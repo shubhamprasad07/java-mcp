@@ -16,7 +16,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>Weather MCP Server</name>
-    <description>MCP server exposing NWS weather tools (alerts, forecast) via stdio. Spring Boot + Spring AI.</description>
+    <description>MCP server exposing NWS weather tools (alerts, forecast) via Streamable HTTP. Spring Boot + Spring AI.</description>
 
     <properties>
         <java.version>17</java.version>
@@ -55,6 +55,21 @@
         <dependency>
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-mcp-server</artifactId>
+        </dependency>
+        <!-- Streamable HTTP / SSE MCP on Tomcat (use profile `http`; see README). Exclusions keep Spring Boot on the parent BOM version. -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-server-webmvc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
